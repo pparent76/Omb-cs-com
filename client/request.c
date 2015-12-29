@@ -21,6 +21,8 @@ void omb_request_domain_name(char domain[256], char cookie[10000])
    
     curl_easy_setopt(curl, CURLOPT_URL, URL);
     curl_easy_setopt(curl, CURLOPT_COOKIE, cookie); 
+   curl_easy_setopt(curl, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+    curl_easy_setopt(curl, CURLOPT_PROXY, "localhost:9050"); 
   /* Perform the request, res will get the return code */ 
     res = curl_easy_perform(curl);
     /* Check for errors */ 
