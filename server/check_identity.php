@@ -1,6 +1,6 @@
 <?php
-
-    $link =  mysql_connect('localhost', 'dbuser', 'passphrase');
+    include 'db_user.php';
+    $link =  mysql_connect('localhost', $db_user, $db_passphrase);
     if (!$link) {die("conection à la base de donnée impossible");}
    
    $db_selected = mysql_select_db("omb",$link);
@@ -25,4 +25,5 @@
 	      die();
 	      }
 	  }
+
 ?>
