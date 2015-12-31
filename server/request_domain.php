@@ -3,9 +3,8 @@
 $domain= $_GET["domain"];
 
 include 'check_identity.php';
-echo $domain."\n";
 
-include 'db_user.php';
+include 'global_variables.php';
 
 //**********************************************
 //Check that the customer has no omb domain yet.
@@ -14,7 +13,7 @@ include 'db_user.php';
 $link =  mysql_connect('localhost', $db_user, $db_passphrase);
   if (!$link) {die("conection à la base de donnée impossible");}
   
-  $db_selected = mysql_select_db("omb",$link);
+  $db_selected = mysql_select_db($db_name,$link);
   
 
   $query=sprintf(" SELECT LENGTH(domain_omb) FROM Customers WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID'])));
@@ -35,8 +34,10 @@ $link =  mysql_connect('localhost', $db_user, $db_passphrase);
 	    echo "This account allready has a domain.\n".$donnees['LENGTH(domain_omb)'];
 	    die();
 	    }
-	}	    
+	}	
 	
+
+
 //*********************************************
 //Check that the domain is not allready in use.
 //*********************************************
@@ -59,12 +60,39 @@ $link =  mysql_connect('localhost', $db_user, $db_passphrase);
 	    echo "This domain is allready used by another user.\n";
 	    die();
 	    }
-	}	    
+	}
+		
+	
+//*********************************************
+//Get corresponding tor hidden service
+//*********************************************
 
+$torhidenservice="";
+
+  $query=sprintf(" SELECT tor_hidden as NB FROM Customers WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID'])));
+  $reponse= mysql_query($query,$link);   
+      
+  if (!$reponse) {
+	    $message  = 'Invalid query: ' . mysql_error() . "\n";
+	    $message .= 'Whole query: ' . $query;
+	    die($message);
+	  }
+	  
+ // On affiche chaque entrée une à une
+	
+ if ($donnees = mysql_fetch_assoc($reponse))
+	{
+	$torhidenservice=$donnees['tor_hidden'];
+	}	
+
+	
 //*********************************************
 //Update entry for TLS proxy
 //*********************************************
+ include 'tls_proxy_database.php';
+ update_domain($domain,$torhidenservice);
 
+	echo "seting domain: ".$domain.$domain_prefix."\n";
 //*********************************************
 //Update entry for SMTP proxy
 //*********************************************
@@ -73,4 +101,16 @@ $link =  mysql_connect('localhost', $db_user, $db_passphrase);
 //Add domain in 
 //*********************************************
 
+$torhidenservice="";
+
+  $query=sprintf(" UPDATE Customers set domain_omb =\"".$domain."\" WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID'])));
+  $reponse= mysql_query($query,$link);   
+      
+  if (!$reponse) {
+	    $message  = 'Invalid query: ' . mysql_error() . "\n";
+	    $message .= 'Whole query: ' . $query;
+	    die($message);
+	  }
+
+	echo "fin!\n";
 ?>
