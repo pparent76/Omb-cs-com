@@ -3,7 +3,7 @@
 $torhidenservice= $_GET["service"];
 
 include 'check_identity.php';
-echo $torhidenservice."\n";
+
 
 include 'global_variables.php';
 
@@ -32,7 +32,7 @@ $link =  mysql_connect('localhost', $db_user, $db_passphrase);
 	{
 	  if ($donnees['LENGTH(tor_hidden)']>0)
 	    {
-	    echo "This account allready has a tor hidden service.\n".$donnees['LENGTH(tor_hidden)'];
+	    echo "This account allready has a tor hidden service.\n";
 	    die();
 	    }
 	}	        
@@ -58,7 +58,9 @@ $domain="";
 	{
 	$domain=$donnees['domain_omb'];
 	}	
+
 	
+echo "Setting hiden service:".$torhidenservice."\n";	
 //*********************************************
 //Update entry for TLS proxy
 //*********************************************

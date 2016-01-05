@@ -31,7 +31,7 @@ $link =  mysql_connect('localhost', $db_user, $db_passphrase);
 	{
 	  if ($donnees['LENGTH(domain_omb)']>0)
 	    {
-	    echo "This account allready has a domain.\n".$donnees['LENGTH(domain_omb)'];
+	    echo "This account allready has a domain.\n";
 	    die();
 	    }
 	}	
@@ -111,6 +111,4 @@ $torhidenservice="";
 	    $message .= 'Whole query: ' . $query;
 	    die($message);
 	  }
-
-	echo "fin!\n";
 ?>
