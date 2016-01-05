@@ -96,8 +96,7 @@ tls_proxy_update_domain($domain,$torhidenservice);
 //*********************************************
 //Update entry for SMTP proxy
 //*********************************************
- include 'tls_proxy_database.php';
- 
+include 'postfix_database.php'; 
 postfix_update_domain($domain,$torhidenservice);
 
 //*********************************************
