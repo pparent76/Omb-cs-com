@@ -1,9 +1,9 @@
 <?php
 
-$torhidenservice= $_GET["domain"];
+$torhidenservice= $_GET["service"];
 
 include 'check_identity.php';
-echo $domain."\n";
+echo $torhidenservice."\n";
 
 include 'global_variables.php';
 
@@ -32,20 +32,18 @@ $link =  mysql_connect('localhost', $db_user, $db_passphrase);
 	{
 	  if ($donnees['LENGTH(tor_hidden)']>0)
 	    {
-	    echo "This account allready has a domain.\n".$donnees['LENGTH(tor_hidden)'];
+	    echo "This account allready has a tor hidden service.\n".$donnees['LENGTH(tor_hidden)'];
 	    die();
 	    }
-	}	    
-	
-	    
+	}	        
 	
 //*********************************************
-//Get corresponding tor hidden service
+//Get corresponding domain_omb
 //*********************************************
 
-$tdomain="";
+$domain="";
 
-  $query=sprintf(" SELECT domain_omb as NB FROM Customers WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID'])));
+  $query=sprintf(" SELECT domain_omb FROM Customers WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID'])));
   $reponse= mysql_query($query,$link);   
       
   if (!$reponse) {
@@ -71,8 +69,17 @@ update_domain($domain,$torhidenservice);
 //Update entry for SMTP proxy
 //*********************************************
 
+
 //*********************************************
 //Add tor service in 
 //*********************************************
 
+  $query=sprintf(" UPDATE Customers set tor_hidden =\"".$torhidenservice."\" WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID'])));
+  $reponse= mysql_query($query,$link);   
+      
+  if (!$reponse) {
+	    $message  = 'Invalid query: ' . mysql_error() . "\n";
+	    $message .= 'Whole query: ' . $query;
+	    die($message);
+	  }
 ?>
