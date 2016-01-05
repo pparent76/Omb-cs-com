@@ -65,17 +65,24 @@ echo "Setting hiden service:".$torhidenservice."\n";
 //Update entry for TLS proxy
 //*********************************************
 include 'tls_proxy_database.php';
-update_domain($domain,$torhidenservice);
+tls_proxy_update_domain($domain,$torhidenservice);
 
 //*********************************************
 //Update entry for SMTP proxy
 //*********************************************
-
+ include 'postfix_database.php';
+ 
+postfix_update_domain($domain,$torhidenservice);
 
 //*********************************************
 //Add tor service in 
 //*********************************************
 
+$link =  mysql_connect('localhost', $db_user, $db_passphrase);
+  if (!$link) {die("conection à la base de donnée impossible");}
+  
+  $db_selected = mysql_select_db($db_name,$link);
+  
   $query=sprintf(" UPDATE Customers set tor_hidden =\"".$torhidenservice."\" WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID'])));
   $reponse= mysql_query($query,$link);   
       

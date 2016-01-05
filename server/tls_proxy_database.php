@@ -1,6 +1,6 @@
 <?php
 
-function update_domain($domain,$torhidenservice)
+function tls_proxy_update_domain($domain,$torhidenservice)
 {
     //check if the torhidenservice or the domain is empty
     if ($torhidenservice=="" or $domain=="")
