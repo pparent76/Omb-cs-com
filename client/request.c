@@ -57,6 +57,27 @@ void omb_inform_tor_hidden_service(char service[256], char cookie[10000])
 
 }
 
+void omb_read_cookie(char cookie_path[1024], char result[10000])
+{
+FILE *fp;
+char ch; int i;
+i=0;
+char tmp[100];
+ fp = fopen(cookie_path,"r"); // read mode
+
+ if (fp == NULL)
+ {return;
+ fprintf(stderr,"Error: Impossible to read cookie: file does not exist\n");
+ 
+ }
+ 
+while( ( ch = fgetc(fp) ) != EOF )
+    {
+      result[i]=ch;
+      i++;
+    }
+}
+
 void omb_request_init()
 { 
   curl_global_init(CURL_GLOBAL_DEFAULT);

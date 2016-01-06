@@ -11,3 +11,4 @@ void omb_request_end();
 void omb_request_domain_name(char domain[256], char cookie[10000]);
 void omb_inform_tor_hidden_service(char service[256], char cookie[10000]);
 int  omb_remaing_credit(char cookie[10000]);
+void omb_read_cookie(char cookie_path[1024], char result[10000]);
