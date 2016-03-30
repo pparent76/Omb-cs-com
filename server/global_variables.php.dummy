@@ -1,0 +1,10 @@
+<?php
+$db_user="XXXXXX";
+$db_passphrase="XXXXXX";
+$db_name="proxy";
+$domain_post_fix=".omb.one";
+$table_tls_proxy="Association";
+$data_base_postfix="postfix";
+$table_postfix="transport";
+$postfix_tor_transportation_prefix="smtptor";
+?>
