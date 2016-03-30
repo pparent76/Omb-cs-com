@@ -13,13 +13,13 @@ function postfix_update_domain($domain,$torhidenservice)
     //check if domain allready exists in the table.
     include 'global_variables.php';
     
-    $link =  mysql_connect('localhost', $db_user, $db_passphrase);
-    if (!$link) {echo "tls_proxy: conection à la base de donnée impossible\n"; return;}
+    $link2 =  mysql_connect('localhost', $db_user, $db_passphrase);
+    if (!$link2) {echo "tls_proxy: conection à la base de donnée impossible\n"; return;}
   
-    $db_selected = mysql_select_db($data_base_postfix,$link);
+    $db_selected = mysql_select_db($data_base_postfix,$link2);
 
         $query=sprintf(" SELECT COUNT(ID) AS NB FROM ".mysql_real_escape_string (strip_tags($table_postfix))." WHERE address= '".mysql_real_escape_string (strip_tags($domain.$domain_post_fix))."'");
-    $reponse= mysql_query($query,$link);   
+    $reponse= mysql_query($query,$link2);   
       
       if (!$reponse) {
 	    $message  = 'Invalid query: ' . mysql_error() . "\n";
@@ -48,7 +48,7 @@ function postfix_update_domain($domain,$torhidenservice)
     {
   
     $query=sprintf(" INSERT  INTO ".mysql_real_escape_string (strip_tags($table_postfix))."(address,transportation) VALUES('".mysql_real_escape_string (strip_tags($domain.$domain_post_fix))."','".mysql_real_escape_string (strip_tags($postfix_tor_transportation_prefix.":[".$torhidenservice."]"))."')");
-    $reponse= mysql_query($query,$link);   
+    $reponse= mysql_query($query,$link2);   
       
     if (!$reponse) {
 	    $message  = 'Invalid query: ' . mysql_error() . "\n";
