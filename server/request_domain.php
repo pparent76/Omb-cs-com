@@ -69,7 +69,7 @@ $link =  mysql_connect('localhost', $db_user, $db_passphrase);
 
 $torhidenservice="";
 
-  $query=sprintf(" SELECT tor_hidden as NB FROM Customers WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID'])));
+  $query=sprintf(" SELECT tor_hidden FROM Customers WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID'])));
   $reponse= mysql_query($query,$link);   
       
   if (!$reponse) {
