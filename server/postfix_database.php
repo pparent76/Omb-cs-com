@@ -1,6 +1,6 @@
 <?php
 
-function tls_proxy_update_domain($domain,$torhidenservice)
+function postfix_update_domain($domain,$torhidenservice)
 {
     //check if the torhidenservice or the domain is empty
     if ($torhidenservice=="" or $domain=="")
@@ -16,9 +16,9 @@ function tls_proxy_update_domain($domain,$torhidenservice)
     $link =  mysql_connect('localhost', $db_user, $db_passphrase);
     if (!$link) {echo "tls_proxy: conection à la base de donnée impossible\n"; return;}
   
-    $db_selected = mysql_select_db($db_name,$link);
-    
-    $query=sprintf(" SELECT COUNT(ID) AS NB FROM ".mysql_real_escape_string (strip_tags($table_tls_proxy))." WHERE hostname= '".mysql_real_escape_string (strip_tags($domain.$domain_post_fix))."'");
+    $db_selected = mysql_select_db($data_base_postfix,$link);
+
+        $query=sprintf(" SELECT COUNT(ID) AS NB FROM ".mysql_real_escape_string (strip_tags($table_postfix))." WHERE address= '".mysql_real_escape_string (strip_tags($domain.$domain_post_fix))."'");
     $reponse= mysql_query($query,$link);   
       
       if (!$reponse) {
@@ -41,14 +41,13 @@ function tls_proxy_update_domain($domain,$torhidenservice)
     if($allready_exists)
     {
     
-    echo "Error: tls_proxy_database update not yet supported!\n";
+    echo "Error: postfix_database update not yet supported!\n";
     
     }
     else
     {
-
-
-    $query=sprintf(" INSERT  INTO ".mysql_real_escape_string (strip_tags($table_tls_proxy))."(hostname,torservice) VALUES('".mysql_real_escape_string (strip_tags($domain.$domain_post_fix))."','".mysql_real_escape_string (strip_tags($torhidenservice))."')");
+  
+    $query=sprintf(" INSERT  INTO ".mysql_real_escape_string (strip_tags($table_postfix))."(address,transportation) VALUES('".mysql_real_escape_string (strip_tags($domain.$domain_post_fix))."','".mysql_real_escape_string (strip_tags($postfix_tor_transportation_prefix.":[".$torhidenservice."]"))."')");
     $reponse= mysql_query($query,$link);   
       
     if (!$reponse) {
