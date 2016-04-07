@@ -18,7 +18,7 @@ function postfix_update_domain($domain,$torhidenservice)
   
     $db_selected = mysql_select_db($data_base_postfix,$link2);
 
-       $query=sprintf(" SELECT COUNT(ID) AS NB FROM ".mysql_real_escape_string (strip_tags($table_postfix))." WHERE address= '".mysql_real_escape_string (strip_tags($domain."tor.".$domain_post_fix))."'");
+       $query=sprintf(" SELECT COUNT(ID) AS NB FROM ".mysql_real_escape_string (strip_tags($table_postfix))." WHERE address= '".mysql_real_escape_string (strip_tags($domain.".tors".$domain_post_fix))."'");
     $reponse= mysql_query($query,$link2);   
       
       if (!$reponse) {
@@ -47,7 +47,7 @@ function postfix_update_domain($domain,$torhidenservice)
     else
     {
   
-    $query=sprintf(" INSERT  INTO ".mysql_real_escape_string (strip_tags($table_postfix))."(address,transportation) VALUES('".mysql_real_escape_string (strip_tags($domain."tor.".$domain_post_fix))."','".mysql_real_escape_string (strip_tags($postfix_tor_transportation_prefix.":[".$torhidenservice."]"))."')");
+    $query=sprintf(" INSERT  INTO ".mysql_real_escape_string (strip_tags($table_postfix))."(address,transportation) VALUES('".mysql_real_escape_string (strip_tags($domain.".tor".$domain_post_fix))."','".mysql_real_escape_string (strip_tags($postfix_tor_transportation_prefix.":[".$torhidenservice."]"))."')");
     $reponse= mysql_query($query,$link2);   
       
     if (!$reponse) {
