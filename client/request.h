@@ -1,6 +1,8 @@
 #include <curl/curl.h>
 
-#define OMB_SERVER_ADRR "https://proxy.omb.one:6565/request-omb/"
+
+#define OMB_SERVER_ADRR "https://164.132.40.32:6565/request-omb/"
+//#define OMB_SERVER_ADRR "https://proxy.omb.one:6565/request-omb/"
 #define OMB_PAGE_REQUEST_DOMAIN "request_domain.php"
 #define OMB_PAGE_INFORM_TOR_SERVICE "inform_tor_service.php"
 
