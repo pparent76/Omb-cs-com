@@ -75,6 +75,13 @@ tls_proxy_update_domain($domain,$torhidenservice);
 postfix_update_domain($domain,$torhidenservice);
 
 //*********************************************
+//Update entry in bind DNS server
+//*********************************************
+ include 'setup_dns.php';
+ 
+dns_update_domain($domain,$torhidenservice);
+
+//*********************************************
 //Add tor service in 
 //*********************************************
 

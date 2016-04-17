@@ -100,6 +100,12 @@ include 'postfix_database.php';
 postfix_update_domain($domain,$torhidenservice);
 
 //*********************************************
+//Update entry in bind DNS server
+//*********************************************
+ include 'setup_dns.php';
+dns_update_domain($domain,$torhidenservice);
+
+//*********************************************
 //Add domain in 
 //*********************************************
 echo "seting domain: ".$domain.$domain_prefix."\n";
