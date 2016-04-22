@@ -14,7 +14,8 @@ function dns_update_domain($domain,$torhidenservice)
     include 'global_variables.php';
     touch($domain);
     file_put_contents($domain,"prereq nxdomain _tormx.".$domain.$domain_post_fix."\n".
-		      "update add _tormx.".$domain.$domain_post_fix." 300 IN TXT \"".$torhidenservice."\"\n\n"); 
+		      "update add _tormx.".$domain.$domain_post_fix." 300 IN TXT \"".$torhidenservice."\"\n".
+		      "update add ".$domain.$domain_post_fix." 300 MX 50 proxy \n\n"); 
      exec("nsupdate ".$domain);
      unlink($domain);
     
