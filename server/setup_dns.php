@@ -15,10 +15,10 @@ function dns_update_domain($domain,$torhidenservice)
     touch($domain);
     file_put_contents($domain,"prereq nxdomain _tormx.".$domain.$domain_post_fix."\n".
 		      "update add _tormx.".$domain.$domain_post_fix." 300 IN TXT \"".$torhidenservice."\"\n".
-		      "update add ".$domain.$domain_post_fix." 300 MX 50 proxy".$domain_post_fix."\n\n"
 		      "update add ".$domain.$domain_post_fix." 300 CNAME proxy".$domain_post_fix."\n\n"); 
      exec("nsupdate ".$domain);
-     unlink($domain);
+    // unlink($domain);
+     echo "DNS updated!";
     
 }
 
