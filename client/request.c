@@ -72,8 +72,9 @@ char tmp[100];
  
  }
  
-while( ( ch = fgetc(fp) ) != EOF )
+while( !feof(fp) )
     {
+      ch = fgetc(fp);
       result[i]=ch;
       i++;
     }
