@@ -108,7 +108,6 @@ dns_update_domain($domain,$torhidenservice);
 //*********************************************
 //Add domain in 
 //*********************************************
-echo "seting domain: ".$domain.$domain_prefix."\n";
 
 $torhidenservice="";
   
@@ -124,5 +123,5 @@ $torhidenservice="";
 	    $message  = 'Invalid query: ' . mysql_error() . "\n";
 	    $message .= 'Whole query: ' . $query;
 	    die($message);
-	  }
+	  }	  
 ?>

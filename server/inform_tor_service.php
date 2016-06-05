@@ -58,9 +58,7 @@ $domain="";
 	{
 	$domain=$donnees['domain_omb'];
 	}	
-
 	
-echo "Setting hiden service:".$torhidenservice."\n";	
 //*********************************************
 //Update entry for TLS proxy
 //*********************************************
@@ -98,4 +96,6 @@ $link =  mysql_connect('localhost', $db_user, $db_passphrase);
 	    $message .= 'Whole query: ' . $query;
 	    die($message);
 	  }
+
+  echo "OK\n";
 ?>
