@@ -17,7 +17,6 @@ function dns_update_domain($domain,$torhidenservice)
 		      "update add ".$domain.$domain_post_fix." 300 CNAME proxy".$domain_post_fix."\n\n"); 
      exec("nsupdate ".$domain);
     // unlink($domain);
-     echo "DNS updated!";
     
 }
 
