@@ -124,4 +124,5 @@ $torhidenservice="";
 	    $message .= 'Whole query: ' . $query;
 	    die($message);
 	  }	  
+  echo "OK\n";
 ?>
