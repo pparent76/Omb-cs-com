@@ -1,7 +1,7 @@
 <?php
     include 'global_variables.php';
     $link =  mysql_connect('localhost', $db_user, $db_passphrase);
-    if (!$link) {die("conection à la base de donnée impossible");}
+    if (!$link) {die("connection à la base de donnée impossible");}
    
    $db_selected = mysql_select_db($db_name,$link);
    
@@ -21,7 +21,7 @@
 	 {
 	    if ($donnees['DB']!=1)
 	      {
-	      echo "<p>Invalid identifiaction cookie.</p>";
+	      echo "Invalid identification cookie.";
 	      die();
 	      }
 	 }
