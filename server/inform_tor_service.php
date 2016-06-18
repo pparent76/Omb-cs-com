@@ -2,6 +2,9 @@
 
 $torhidenservice= $_GET["service"];
 
+if (strlen($torhidenservice)<16)
+  die("Invalid tor hidden service size");
+
 include 'check_identity.php';
 
 
