@@ -58,6 +58,12 @@ if ($_GET["user"]==$db_user and $_GET["password"]==$db_passphrase )
 	 file_put_contents ($dir.$cookie_path.".cookie","ID=".$ID."; passphrase=".$passphrase.";");
 	 echo "<a href=\"https://proxy.omb.one:6565/request-omb/Create_Acounts/".$cookie_path.".cookie"."\"/>https://proxy.omb.one:6565/request-omb/Create_Acounts/".$cookie_path.".cookie"."</a>"; 
 	 echo "</br>Send mail ".$_GET["email"];
+	 
+    /*************************************************************
+    *			Add user to Dovecot
+    **************************************************************/
+   echo  exec("sudo /usr/lib/cgi-bin/add-dovecot-user.sh ".$ID." ".$passphrase);
+    
      $to      = $_GET["email"];
      $subject = 'Own-Mailbox: your identification cookie for the proxy service.';
      $message = "Hi !\n you have requested an Identifiaction cookie for the Own-Mailbox tor proxy service.\n You can download it here: https://proxy.omb.one:6565/request-omb/Create_Acounts/".$cookie_path.".cookie".
