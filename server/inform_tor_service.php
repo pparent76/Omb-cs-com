@@ -20,7 +20,7 @@ $link =  mysql_connect('localhost', $db_user, $db_passphrase);
   $db_selected = mysql_select_db($db_name,$link);
   
 
-  $query=sprintf(" SELECT LENGTH(tor_hidden) FROM Customers WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID'])));
+  $query=sprintf(" SELECT LENGTH(tor_hidden) FROM Customers WHERE ID=".mysql_real_escape_string (strip_tags($_COOKIE['ID']))." AND tor_hidden !='".mysql_real_escape_string (strip_tags($torhidenservice))."'" );
   $reponse= mysql_query($query,$link);   
       
   if (!$reponse) {

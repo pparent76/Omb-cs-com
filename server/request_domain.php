@@ -37,6 +37,12 @@ $link =  mysql_connect('localhost', $db_user, $db_passphrase);
 	}	
 	
 
+if (strlen($domain)<3)
+  die("The requested domain is too short");
+if (strlen($domain)>30)
+  die("The requested domain is too long");  
+if (!preg_match('/[^a-z0-9]/', $domain))  
+  die("Requested forbiden domain: please only use lower case lettres and digits."); 
 
 //*********************************************
 //Check that the domain is not allready in use.
